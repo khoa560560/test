@@ -2,10 +2,23 @@
 
 Nền tảng tìm và quản lý phòng trọ sinh viên Cần Thơ. [Tài liệu kiến trúc, ERD, use cases và API](docs/architecture.md).
 
-## Tình trạng đã kiểm chứng
-Frontend React/Vite: `npm run build` thành công; dev server trả HTTP 200. Backend ASP.NET Core 8: `dotnet restore` và `dotnet build` thành công, Swagger trả HTTP 200 và liệt kê 30 đường dẫn; EF Core tạo được migration `InitialCreate` và SQL script với 7 bảng nghiệp vụ, ràng buộc CHECK và indexes. Chưa chạy migration trên SQL Server hoặc kiểm thử API với dữ liệu thật vì môi trường bị HTTP 403 khi tải image SQL Server từ Microsoft Container Registry. Chưa hoàn thiện toàn bộ chức năng đồ án; xem phần việc còn lại bên dưới.
+## Chạy demo giao diện nhanh
 
-## Chạy frontend
+Chế độ demo giao diện dùng dữ liệu mẫu ngay trong trình duyệt. Bạn không cần SQL Server, .NET, Docker, Cloudinary hoặc backend để trình bày các màn hình.
+
+```sh
+cd frontend
+npm ci
+npm run dev
+```
+
+Mở `http://localhost:5173`. Có thể đăng nhập bằng bất kỳ email nào; hệ thống sẽ tạo phiên demo. Để xem từng vai trò, dùng các email mẫu `tenant@demo.local`, `landlord@demo.local` và `admin@demo.local`, với mật khẩu bất kỳ dài từ 8 ký tự. Các thao tác tìm kiếm, lọc, yêu thích, đặt lịch, duyệt tin và dashboard chỉ thay đổi dữ liệu trong phiên trình duyệt.
+
+## Tình trạng mã nguồn đầy đủ
+
+Frontend React/Vite: `npm run build` thành công. Backend ASP.NET Core 8 vẫn được giữ trong repository cho giai đoạn tích hợp thật: `dotnet restore` và `dotnet build` thành công, Swagger đã kiểm tra và EF Core đã tạo migration `InitialCreate`. Chưa chạy migration trên SQL Server trong môi trường này vì image SQL Server bị từ chối tải (HTTP 403).
+
+## Chạy frontend kết nối backend thật
 ```sh
 cd frontend
 npm ci
